@@ -95,9 +95,9 @@ void IRAM_ATTR onTimer()
         //handleModeChange(doingControlledMovements);
         break;
     case doingControlledMovements:
-        portENTER_CRITICAL_ISR(&timerMux);
+        //portENTER_CRITICAL_ISR(&timerMux);
         sineStepperController.update();
-        portEXIT_CRITICAL_ISR(&timerMux);
+        //portEXIT_CRITICAL_ISR(&timerMux);
 
         handleModeChange(adjustingJoint1);
         break;
@@ -186,9 +186,9 @@ void loop()
     {
         int32_t pos = 0;
 
-        portENTER_CRITICAL(&timerMux);
+        //portENTER_CRITICAL(&timerMux);
         pos = sineStepper1.currentPos;
-        portEXIT_CRITICAL(&timerMux);
+        //portEXIT_CRITICAL(&timerMux);
 
         delay(10);
     }
