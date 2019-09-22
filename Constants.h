@@ -19,7 +19,7 @@
 
 #define BUTTON_PIN 34
 #define NAN_ALERT_LED 25
-#define BUTTON_COOLDOWN_CYCLES 10000
+#define BUTTON_COOLDOWN_CYCLES 20000
 
 #define EXECUTING_ISR_CODE 23
 #define ROTARY_ENC_1_A 32
@@ -40,16 +40,16 @@
 // we want to figure out what setting will allow us to do 1 full rev the fastest.
 
 #define PULSES_PER_REVOLUTION 21480
-#define MOVE_DURATION 1.5
-#define PAUSE_DURATION 1.0
+#define MOVE_DURATION 1.0f
+#define PAUSE_DURATION 1.0f
 
-#define FREQUENCY_MULTIPLIER 0.000025
-#define TIMER_US 25
+#define FREQUENCY_MULTIPLIER 0.000012f
+#define TIMER_US 12
 
 // NOTE: SineStepper and MoveBatch ids must be lower then MAX_NUM_OF_STEPPERS
 #define MAX_NUM_OF_STEPPERS 10
 #define MAX_NUM_OF_BATCHED_MOVES 100
-#define M_PI 3.14159265358979323846
-#define M_PI_2 1.57079632679489661923
+#define M_PI 3.14159265358979323846f
+#define M_PI_2 1.57079632679489661923f
 
 #endif

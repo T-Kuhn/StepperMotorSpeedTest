@@ -68,7 +68,7 @@ MoveBatch SineStepperController::peekMoveBatch()
 // - - - - - - - - - - - - - - -
 // - - -  SET FREQ FROM  - - - -
 // - - - - - - - - - - - - - - -
-void SineStepperController::setFrequencyFrom(double moveDuration)
+void SineStepperController::setFrequencyFrom(float moveDuration)
 {
     _frequency = FREQUENCY_MULTIPLIER * M_PI / moveDuration;
 }
@@ -107,10 +107,12 @@ void SineStepperController::update()
     {
         // GENERATE PULSES
         _counter++;
-        double theta = _counter * _frequency;
+        // Theta goes from 0 ~ PI
+        float theta = _counter * _frequency;
         // cosine takes values form 0 ~ 2.
         // starting at 2 and ending at 0.
-        double cosine = (cos(theta) + 1.0);
+
+        float cosine = (cosf(theta) + 1.0);
 
         for (uint8_t i = 0; i < MAX_NUM_OF_STEPPERS; i++)
         {

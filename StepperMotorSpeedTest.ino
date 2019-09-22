@@ -32,6 +32,7 @@ int buttonCoolDownCounter = 0;
 hw_timer_t *timer = NULL;
 portMUX_TYPE timerMux = portMUX_INITIALIZER_UNLOCKED;
 volatile SemaphoreHandle_t timerSemaphore;
+uint32_t cp0_regs[18];
 
 void handleModeChange(Mode newMode)
 {
@@ -49,6 +50,19 @@ void handleModeChange(Mode newMode)
 void IRAM_ATTR onTimer()
 {
     digitalWrite(EXECUTING_ISR_CODE, HIGH);
+    // get FPU state
+    uint32_t cp_state = xthal_get_cpenable();
+
+    if (cp_state)
+    {
+        // Save FPU registers
+        xthal_save_cp0(cp0_regs);
+    }
+    else
+    {
+        // enable FPU
+        xthal_set_cpenable(1);
+    }
 
     switch (currentMode)
     {
@@ -92,6 +106,17 @@ void IRAM_ATTR onTimer()
     }
     xSemaphoreGiveFromISR(timerSemaphore, NULL);
     digitalWrite(EXECUTING_ISR_CODE, LOW);
+
+    if (cp_state)
+    {
+        // Restore FPU registers
+        xthal_restore_cp0(cp0_regs);
+    }
+    else
+    {
+        // turn it back off
+        xthal_set_cpenable(0);
+    }
 }
 
 void setupMoveBatch(MoveBatch mb)
