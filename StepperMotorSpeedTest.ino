@@ -10,7 +10,6 @@
 #include "Queue.h"
 #include "MoveBatch.h"
 #include "Encoder.h"
-#include "fsddfs.h"
 
 enum Mode
 {
@@ -122,35 +121,19 @@ void IRAM_ATTR onTimer()
 
 void setupMoveBatch(MoveBatch mb)
 {
-    mb.addMove(/*id:*/ 0, /*pos:*/ (int32_t)(PULSES_PER_REVOLUTION * 1.0));
+    mb.addMove(/*id:*/ 0, /*pos:*/ (int32_t)(PULSES_TO_MOVE * 1.0));
     mb.moveDuration = MOVE_DURATION;
     sineStepperController.addMoveBatch(mb);
 
-    mb.addMove(/*id:*/ 0, /*pos:*/ (int32_t)(PULSES_PER_REVOLUTION * 1.0));
+    mb.addMove(/*id:*/ 0, /*pos:*/ (int32_t)(PULSES_TO_MOVE * 1.0));
     mb.moveDuration = PAUSE_DURATION;
     sineStepperController.addMoveBatch(mb);
 
-    mb.addMove(/*id:*/ 0, /*pos:*/ (int32_t)(PULSES_PER_REVOLUTION * 2.0));
+    mb.addMove(/*id:*/ 0, /*pos:*/ (int32_t)(PULSES_TO_MOVE * 0));
     mb.moveDuration = MOVE_DURATION;
     sineStepperController.addMoveBatch(mb);
 
-    mb.addMove(/*id:*/ 0, /*pos:*/ (int32_t)(PULSES_PER_REVOLUTION * 2.0));
-    mb.moveDuration = PAUSE_DURATION;
-    sineStepperController.addMoveBatch(mb);
-
-    mb.addMove(/*id:*/ 0, /*pos:*/ (int32_t)(PULSES_PER_REVOLUTION * 1.0));
-    mb.moveDuration = MOVE_DURATION;
-    sineStepperController.addMoveBatch(mb);
-
-    mb.addMove(/*id:*/ 0, /*pos:*/ (int32_t)(PULSES_PER_REVOLUTION * 1.0));
-    mb.moveDuration = PAUSE_DURATION;
-    sineStepperController.addMoveBatch(mb);
-
-    mb.addMove(/*id:*/ 0, /*pos:*/ (int32_t)(PULSES_PER_REVOLUTION * 0));
-    mb.moveDuration = MOVE_DURATION;
-    sineStepperController.addMoveBatch(mb);
-
-    mb.addMove(/*id:*/ 0, /*pos:*/ (int32_t)(PULSES_PER_REVOLUTION * 0));
+    mb.addMove(/*id:*/ 0, /*pos:*/ (int32_t)(PULSES_TO_MOVE * 0));
     mb.moveDuration = PAUSE_DURATION;
     sineStepperController.addMoveBatch(mb);
 }
