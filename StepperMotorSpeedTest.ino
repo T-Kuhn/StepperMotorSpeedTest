@@ -10,6 +10,7 @@
 #include "Queue.h"
 #include "MoveBatch.h"
 #include "Encoder.h"
+#include "fsddfs.h"
 
 enum Mode
 {

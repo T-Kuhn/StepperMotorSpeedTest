@@ -107,7 +107,7 @@ void SineStepperController::update()
     {
         // GENERATE PULSES
         _counter++;
-        // Theta goes from 0 ~ PI
+        // Theta goes from 0 ~ M_PI
         float theta = _counter * _frequency;
         // cosine takes values form 0 ~ 2.
         // starting at 2 and ending at 0.

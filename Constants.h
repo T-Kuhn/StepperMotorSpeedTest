@@ -40,11 +40,11 @@
 // we want to figure out what setting will allow us to do 1 full rev the fastest.
 
 #define PULSES_PER_REVOLUTION 21480
-#define MOVE_DURATION 1.0f
+#define MOVE_DURATION 0.5f
 #define PAUSE_DURATION 1.0f
 
-#define FREQUENCY_MULTIPLIER 0.000012f
-#define TIMER_US 12
+#define FREQUENCY_MULTIPLIER 0.000010f
+#define TIMER_US 10
 
 // NOTE: SineStepper and MoveBatch ids must be lower then MAX_NUM_OF_STEPPERS
 #define MAX_NUM_OF_STEPPERS 10
